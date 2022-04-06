@@ -1,0 +1,25 @@
+<template>
+  <li>
+    <a
+      :href="href"
+      :class="[
+        'block px-3 py-2 rounded-md',
+        isActive ? 'bg-blue-400 text-white' : 'bg-gray-50'
+      ]"
+    >
+      <slot></slot>
+    </a>
+  </li>
+</template>
+
+<script>
+export default {
+  props: {
+    href: {
+      type: String,
+      required: true
+    },
+    isActive: Boolean
+  }
+}
+</script>
