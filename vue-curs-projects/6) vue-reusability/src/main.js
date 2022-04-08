@@ -1,4 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import "./theme.css";
-createApp(App).mount("#app");
+import translatePlugin from "./translatePlugin";
+
+const app = createApp(App);
+
+app.use(translatePlugin, {});
+
+app.mount("#app");
