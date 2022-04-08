@@ -20,17 +20,9 @@
 <script>
 import AppAlert from "./components/AppAlert.vue";
 import AppBlock from "./components/AppBlock.vue";
+import alertMixin from "./alertMixin";
 export default {
   components: { AppAlert, AppBlock },
-  data() {
-    return {
-      alert: false,
-    };
-  },
-  methods: {
-    toggleAlert() {
-      this.alert = !this.alert;
-    },
-  },
+  mixins: [alertMixin],
 };
 </script>
