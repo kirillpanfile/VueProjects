@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="card">
-      <h2 v-color="myColor">Talk about directives</h2>
+    <div v-if="active" class="card">
+      <h2 v-color:color.blink.hover="myColor">Talk about directives</h2>
 
       <div class="form-control">
         <label for="inp">Active by default</label>
@@ -24,7 +24,13 @@ export default {
   data() {
     return {
       myColor: "darkred",
+      active: true,
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.active = false;
+    }, 3000);
   },
 };
 </script>
