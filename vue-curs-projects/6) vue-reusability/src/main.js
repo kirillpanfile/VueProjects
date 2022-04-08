@@ -4,7 +4,20 @@ import "./theme.css";
 import translatePlugin from "./translatePlugin";
 
 const app = createApp(App);
+const ru = {
+  app: {
+    title: "Приложение",
+    subtitle: "Приложение для работы с переводами",
+  },
+};
 
-app.use(translatePlugin, {});
+const en = {
+  app: {
+    title: "Application",
+    subtitle: "Application for translations",
+  },
+};
+
+app.use(translatePlugin, { en, ru });
 
 app.mount("#app");

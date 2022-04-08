@@ -1,7 +1,17 @@
 export default {
   install(app, options) {
-    app.config.globalProperties.$alert = (test) => {
-      alert(test);
+    let current = "ru";
+
+    const changeLanguage = (lang) => {
+      current = lang;
     };
+
+    app.config.globalProperties.$i18n = (key) => {
+      return key.split(".").reduce((obj, key) => {
+        return obj[key] || "Unknown";
+      }, options[current]);
+    };
+
+    app.provide("changeI18N", changeLanguage);
   },
 };
