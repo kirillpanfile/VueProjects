@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  inject: ["login"],
   data() {
     return {
       email: "",
@@ -35,7 +36,7 @@ export default {
   methods: {
     submit() {
       if (this.isValid) {
-        // login
+        this.login();
       }
     },
   },

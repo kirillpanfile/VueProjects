@@ -36,4 +36,6 @@ export default createRouter({
       },
     },
   ],
+  linkActiveClass: "active",
+  linkExactActiveClass: "active",
 });
