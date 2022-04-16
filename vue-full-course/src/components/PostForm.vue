@@ -19,11 +19,7 @@
 </template>
 
 <script>
-import MyButton from "./UI/myButton.vue";
 export default {
-  components: {
-    MyButton,
-  },
   data() {
     return {
       post: {
