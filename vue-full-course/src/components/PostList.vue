@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Users List</h3>
+    <h3 style="text-align: center">Users List</h3>
     <div v-for="(post, index) in posts" :key="index">
       <post-item :post="post"></post-item>
     </div>

@@ -5,13 +5,17 @@
       <div><strong>Description: </strong> {{ post.description }}</div>
     </div>
     <div class="post__btns">
-      <button class="btn" @click="deletePost">Delete</button>
+      <my-button @click="deletePost">Delete</my-button>
     </div>
   </div>
 </template>
 
 <script>
+import MyButton from "./UI/myButton.vue";
 export default {
+  components: {
+    MyButton,
+  },
   props: {
     post: {
       type: Object,
@@ -23,7 +27,7 @@ export default {
 
 <style>
 .post {
-  padding: 20px;
+  padding: 4px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;

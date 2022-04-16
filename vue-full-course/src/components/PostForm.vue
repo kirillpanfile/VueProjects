@@ -12,12 +12,18 @@
       v-model="post.description"
       placeholder="post description"
     />
-    <input class="btn" type="submit" value="Submit post" />
+    <my-button class="btn" type="submit" value="Submit post">
+      Submit post
+    </my-button>
   </form>
 </template>
 
 <script>
+import MyButton from "./UI/myButton.vue";
 export default {
+  components: {
+    MyButton,
+  },
   data() {
     return {
       post: {
@@ -43,14 +49,7 @@ form {
   display: flex;
   flex-direction: column;
 }
-.btn {
-  align-self: flex-end;
-  margin: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  color: teal;
-  background: none;
-}
+
 .input {
   padding: 10px;
   margin-bottom: 10px;
