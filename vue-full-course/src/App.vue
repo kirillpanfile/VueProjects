@@ -1,15 +1,21 @@
 <template>
-  <post-form @add-post="createPost"></post-form>
-  <post-list :posts="posts"></post-list>
+  <h1>Page with posts</h1>
+  <my-button @click="showDialog">Create Post</my-button>
+  <my-dialog v-model:show="dialogValue">
+    <post-form @add-post="createPost"></post-form>
+  </my-dialog>
+  <post-list @remove="removePost" :posts="posts"></post-list>
 </template>
 
 <script>
 import PostForm from "./components/PostForm.vue";
 import PostList from "./components/PostList.vue";
+import myDialog from "./components/UI/myDialog.vue";
 export default {
   components: {
     PostForm,
     PostList,
+    myDialog,
   },
   name: "App",
   data() {
@@ -36,12 +42,20 @@ export default {
           description: "Angular is a web framework",
         },
       ],
+      dialogValue: false,
     };
   },
   methods: {
     createPost(post) {
       console.log(post);
       this.posts.push(post);
+      this.dialogValue = false;
+    },
+    removePost(post) {
+      this.posts = this.posts.filter((p) => p.id !== post.id);
+    },
+    showDialog() {
+      this.dialogValue = true;
     },
   },
 };

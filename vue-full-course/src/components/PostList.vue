@@ -1,9 +1,15 @@
 <template>
-  <div>
+  <div v-if="posts.length > 0">
     <h3 style="text-align: center">Users List</h3>
-    <div v-for="(post, index) in posts" :key="index">
-      <post-item :post="post"></post-item>
-    </div>
+    <post-item
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+      @remove="$emit('remove', post)"
+    ></post-item>
+  </div>
+  <div v-else style="text-align: center">
+    <h3>No users</h3>
   </div>
 </template>
 

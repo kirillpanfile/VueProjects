@@ -1,13 +1,7 @@
 <template>
   <form @submit.prevent="submitPost">
-    <input
-      class="input"
-      type="text"
-      v-model="post.name"
-      placeholder="post name"
-    />
-    <input
-      class="input"
+    <my-input type="text" v-model="post.name" placeholder="post name" />
+    <my-input
       type="text"
       v-model="post.description"
       placeholder="post description"
@@ -19,7 +13,12 @@
 </template>
 
 <script>
+import myInput from "./UI/myInput.vue";
 export default {
+  name: "post-form",
+  components: {
+    myInput,
+  },
   data() {
     return {
       post: {
