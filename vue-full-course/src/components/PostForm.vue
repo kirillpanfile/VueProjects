@@ -1,11 +1,7 @@
 <template>
   <form @submit.prevent="submitPost">
-    <my-input type="text" v-model="post.name" placeholder="post name" />
-    <my-input
-      type="text"
-      v-model="post.description"
-      placeholder="post description"
-    />
+    <my-input type="text" v-model="post.title" placeholder="post name" />
+    <my-input type="text" v-model="post.body" placeholder="post description" />
     <my-button class="btn" type="submit" value="Submit post">
       Submit post
     </my-button>
@@ -22,8 +18,8 @@ export default {
   data() {
     return {
       post: {
-        name: "",
-        description: "",
+        title: "",
+        body: "",
       },
     };
   },

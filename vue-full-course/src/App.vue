@@ -1,5 +1,6 @@
 <template>
   <h1>Page with posts</h1>
+  <my-button @click="fetchPosts">Get Posts</my-button>
   <my-button @click="showDialog">Create Post</my-button>
   <my-dialog v-model:show="dialogValue">
     <post-form @add-post="createPost"></post-form>
@@ -11,6 +12,7 @@
 import PostForm from "./components/PostForm.vue";
 import PostList from "./components/PostList.vue";
 import myDialog from "./components/UI/myDialog.vue";
+import axios from "axios";
 export default {
   components: {
     PostForm,
@@ -20,28 +22,7 @@ export default {
   name: "App",
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          name: "Post about Javascript",
-          description: "Javascript is a web language",
-        },
-        {
-          id: 2,
-          name: "Post about Vue",
-          description: "Vue is a web framework",
-        },
-        {
-          id: 3,
-          name: "Post about React",
-          description: "React is a web framework",
-        },
-        {
-          id: 4,
-          name: "Post about Angular",
-          description: "Angular is a web framework",
-        },
-      ],
+      posts: [],
       dialogValue: false,
     };
   },
@@ -56,6 +37,16 @@ export default {
     },
     showDialog() {
       this.dialogValue = true;
+    },
+    async fetchPosts() {
+      try {
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts?_limit=10"
+        );
+        this.posts = response.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
