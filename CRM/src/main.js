@@ -1,8 +1,15 @@
 import { createApp } from "vue";
+import VueValidate from "vuelidate";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import "materialize-css/dist/js/materialize.min";
 
-createApp(App).use(store).use(router).mount("#app");
+import "materialize-css/dist/js/materialize.min";
+import dateFilter from "./filters/date.filter";
+
+const app = createApp(App).use(store).use(router).use(VueValidate);
+app.config.globalProperties.$filters = {
+  dateFilter: dateFilter,
+};
+app.mount("#app");
