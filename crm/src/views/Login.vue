@@ -3,12 +3,28 @@
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
-        <input id="email" type="text" class="validate" />
+        <input
+          id="email"
+          v-model.trim="email"
+          :class="{
+            invalid: emailError,
+          }"
+          type="text"
+          class="validate"
+        />
         <label for="email">Email</label>
         <small class="helper-text invalid">Email</small>
       </div>
       <div class="input-field">
-        <input id="password" type="password" class="validate" />
+        <input
+          v-model="password"
+          :class="{
+            invalid: passwordError,
+          }"
+          id="password"
+          type="password"
+          class="validate"
+        />
         <label for="password">Пароль</label>
         <small class="helper-text invalid">Password</small>
       </div>
@@ -30,19 +46,54 @@
 </template>
 
 <script>
+import useVuelidate from "@vuelidate/core";
+import { email, required, minLength } from "@vuelidate/validators";
 export default {
   name: "login",
+  setup() {
+    return {
+      v$: useVuelidate(),
+    };
+  },
   data() {
     return {
       email: "",
       password: "",
-      errors: {},
     };
   },
-  validations: {},
+  validations() {
+    return {
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
+    };
+  },
   methods: {
     submitHandler() {
+      this.v$.$touch();
+      if (this.v$.$invalid) {
+        return;
+      }
+      const formData = {
+        email: this.email,
+        password: this.password,
+      };
+
+      console.log(formData);
       this.$router.push("/");
+    },
+  },
+  computed: {
+    emailError() {
+      return this.v$.$error.email;
+    },
+    passwordError() {
+      return this.v$.$error.password;
     },
   },
 };
